@@ -2,7 +2,7 @@
 
 Introduction to Object-Oriented Programming: Classes and objects, fields and methods, arguments and parameters, constructors, class and instance data values
 
-1. Create a class named 'Employee' with setters and getters. By creating two objects of class 'Employee', assign and print the employee ID, name, and salary of two employees with names "John" and "Alice" respectively.
+
 
 2. Write a program to create a 'Rectangle' class without any parameter in its constructor and calculate the perimeter and area of a rectangle with length 6 units and width 4 units.
 
