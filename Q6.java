@@ -101,3 +101,12 @@ public class Q5 {
         showBooks();
     }
 }
+
+/*
+6. Create a class called "Student" with attributes such as name and age. Write a program that uses an array of "Student" objects to represent a list of students. Implement a method to display the details of all the students in the list using a for each loop.
+
+7. Create a class called "Book" with attributes such as title, author, and publication year. Write a program that creates an array of "Book" objects to represent a library collection. Implement methods to perform the following operations: 
+         Add books to the library collection. 
+         Display the details of all the books in the library.
+
+*/
