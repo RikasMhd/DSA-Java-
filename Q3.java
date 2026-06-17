@@ -45,3 +45,11 @@ public class Q3{
 		System.out.println("No. of pages: "+b1.getNoPages());
 	}
 }
+
+/*
+3. Write a program to implement a class "Book" with two possible constructors.
+ a. Write setters and getters for setting the book title, author and number of chapters.
+ b. Write a method to calculate and print the number of pages based on the number of chapters in the book.
+ c. Write a method to display the book's information.
+ d. Write a separate class "TestBook" with a main() method to test all the methods of the Book class.
+*/
