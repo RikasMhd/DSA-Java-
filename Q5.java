@@ -43,3 +43,8 @@ public class Q5 {
         System.out.println("Result: " + result);
     }
 }
+
+/*
+5. Write a program that prompts the user to enter a mathematical operator (+, -, *, /) and two numbers. The program should perform the corresponding mathematical operation on the two numbers and display the result. Implement a function performOperation that accepts the operator and the two numbers as input and returns the result of the operation.
+*/
+
