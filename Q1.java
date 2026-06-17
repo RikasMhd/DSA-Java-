@@ -44,3 +44,7 @@ public class Q1{
 
 	}
 }
+
+/*
+1. Create a class named 'Employee' with setters and getters. By creating two objects of class 'Employee', assign and print the employee ID, name, and salary of two employees with names "John" and "Alice" respectively.
+	*/
