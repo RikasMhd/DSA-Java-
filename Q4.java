@@ -22,3 +22,7 @@ public class Q4{
 		}
 	}
 }
+
+/*
+4. Write a program that determines the grade for a student based on their score. Prompt the user to enter a score, and then use explicit control-flow statements (if-else or switch-case) to determine and display the corresponding grade. For example, if the score is between 90 and 100, display "Grade A".
+*/
