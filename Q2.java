@@ -36,3 +36,7 @@ public class Q2{
 		System.out.println("Perimeter is "+rec1.perimeter());
 	}
 }
+
+/*
+2. Write a program to create a 'Rectangle' class without any parameter in its constructor and calculate the perimeter and area of a rectangle with length 6 units and width 4 units.
+*/
