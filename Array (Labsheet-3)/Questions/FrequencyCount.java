@@ -1,20 +1,40 @@
+import java.util.Scanner;
 public class FrequencyCount {
-    public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 2, 1, 3, 3, 4};
-        boolean[] visited = new boolean[arr.length];
 
-        System.out.println("Element : Frequency");
+    public static void printFrequencies(int[] arr) {
+        boolean[] counted = new boolean[arr.length];
+
         for (int i = 0; i < arr.length; i++) {
-            if (!visited[i]) {
-                int count = 1;
-                for (int j = i + 1; j < arr.length; j++) {
-                    if (arr[i] == arr[j]) {
-                        count++;
-                        visited[j] = true;
-                    }
-                }
-                System.out.println(arr[i] + " : " + count);
+            if (counted[i]) {
+                continue; // already printed this value
             }
+
+            int count = 1;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] == arr[i]) {
+                    count++;
+                    counted[j] = true;
+                }
+            }
+            System.out.println(arr[i] + " -> " + count);
         }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of elements: ");
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+
+        System.out.println("Enter " + n + " integers:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        System.out.println("Element frequencies:");
+        printFrequencies(arr);
+
+        sc.close();
     }
 }
