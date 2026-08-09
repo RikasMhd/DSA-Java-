@@ -1,262 +1,258 @@
-Java Data Structures — Complete Reference
-1. Array
-What it does: Fixed-size, contiguous block of memory holding elements of the same type, accessed by index.
+# Java Data Structures & Algorithms (DSA)
 
-How to use:
+A quick reference for learning and implementing common **Data Structures in Java**. This repository covers basic data structures, their operations, use cases, and time complexity.
 
-int[] arr = new int[5];              // declare with size
-int[] arr2 = {1, 2, 3, 4, 5};        // declare with values
-arr[0] = 10;                          // set
-int x = arr[0];                       // get
-int len = arr.length;                 // size (property, not method!)
+## 📚 Data Structures Covered
 
-// 2D array
-int[][] grid = new int[3][3];
-grid[0][0] = 1;
-When to use:
+### 1. Array
 
-You know the size in advance and it won't change.
-You need fast index-based access — O(1).
-Memory efficiency matters (no overhead per element like linked structures).
-Classic use: fixed-size lookup tables, matrices, sliding window problems.
-Downsides: Can't resize. Insertion/deletion in the middle is O(n) (must shift elements).
+Fixed-size collection with fast index-based access.
 
-2. ArrayList
-What it does: A resizable array — the "growable" version of an array, part of java.util.
+```java
+int[] arr = {1, 2, 3, 4, 5};
 
-How to use:
+arr[0] = 10;
+System.out.println(arr[0]);
+System.out.println(arr.length);
+```
 
-import java.util.ArrayList;
+**Use for:** Fixed-size data, fast index access, matrices, lookup tables.
 
+---
+
+### 2. ArrayList
+
+Resizable array provided by `java.util`.
+
+```java
 ArrayList<Integer> list = new ArrayList<>();
-list.add(10);                 // add to end - O(1) amortized
-list.add(0, 5);                // insert at index - O(n)
-int x = list.get(0);           // access - O(1)
-list.set(0, 99);               // update
-list.remove(0);                // remove by index - O(n)
-list.remove(Integer.valueOf(99)); // remove by value
-int size = list.size();
-boolean has = list.contains(10);
-When to use:
 
-You need array-like access but don't know the size ahead of time.
-Frequent reads, occasional insert/delete at the end.
-Default "go-to" list in Java unless you have a specific reason for something else.
-Avoid when: You're doing lots of insertions/deletions in the middle or at the front — use LinkedList instead.
+list.add(10);
+list.add(20);
+list.get(0);
+list.set(0, 99);
+list.remove(0);
+```
 
-3. LinkedList
-What it does: A chain of nodes, each holding data + a reference to the next (and previous, since Java's is doubly-linked). Implements both List and Deque.
+**Use for:** Dynamic lists with frequent reading and occasional insertion/deletion.
 
-How to use:
+---
 
-import java.util.LinkedList;
+### 3. LinkedList
 
-LinkedList<Integer> ll = new LinkedList<>();
-ll.addFirst(1);      // O(1)
-ll.addLast(2);        // O(1)
-ll.removeFirst();     // O(1)
-ll.removeLast();      // O(1)
-int first = ll.peekFirst();
-When to use:
+Node-based structure where each node references other nodes.
 
-Frequent insertions/deletions at the beginning or middle.
-Implementing a queue, stack, or deque from scratch.
-You don't need random access (indexed get(i) is O(n) here — slow!).
-Avoid when: You need fast random access by index — use ArrayList instead.
+```java
+LinkedList<Integer> list = new LinkedList<>();
 
-4. Stack (LIFO)
-What it does: Last-In-First-Out structure. You push onto the top and pop from the top.
+list.addFirst(10);
+list.addLast(20);
+list.removeFirst();
+list.removeLast();
+```
 
-How to use:
+**Use for:** Frequent insertions/deletions, queues, and deque operations.
 
-import java.util.Stack;
+---
 
-Stack<Integer> stack = new Stack<>();
-stack.push(1);
-stack.push(2);
-int top = stack.peek();   // 2, doesn't remove
-int popped = stack.pop(); // 2, removes and returns
-boolean empty = stack.isEmpty();
-Note: Stack is technically legacy (synchronized, slower). Many prefer Deque as a stack:
+### 4. Stack (LIFO)
 
+Last-In-First-Out structure.
+
+```java
 Deque<Integer> stack = new ArrayDeque<>();
-stack.push(1);
-stack.pop();
-When to use:
 
-Undo/redo functionality.
-Matching brackets / parentheses validation.
-Expression evaluation (postfix/infix conversion).
-DFS (depth-first search) — using the stack explicitly instead of recursion.
-Backtracking problems.
-5. Queue (FIFO)
-What it does: First-In-First-Out. You add to the back, remove from the front.
+stack.push(10);
+stack.push(20);
 
-How to use:
+int top = stack.peek();
+int value = stack.pop();
+```
 
-import java.util.Queue;
-import java.util.LinkedList;
+**Use for:** Bracket matching, undo/redo, DFS, backtracking, expression evaluation.
 
-Queue<Integer> q = new LinkedList<>();
-q.offer(1);     // add to back
-q.offer(2);
-int front = q.peek();  // 1, doesn't remove
-int removed = q.poll(); // 1, removes and returns
-When to use:
+---
 
-BFS (breadth-first search) on graphs/trees.
-Task scheduling, print queues, buffering.
-Any "process in the order received" scenario.
-6. Deque (Double-Ended Queue)
-What it does: Insert/remove from both ends. Can act as a stack, a queue, or both.
+### 5. Queue (FIFO)
 
-How to use:
+First-In-First-Out structure.
 
-import java.util.Deque;
-import java.util.ArrayDeque;
+```java
+Queue<Integer> queue = new LinkedList<>();
 
+queue.offer(10);
+queue.offer(20);
+
+int first = queue.peek();
+int value = queue.poll();
+```
+
+**Use for:** BFS, task scheduling, buffering, and processing items in order.
+
+---
+
+### 6. Deque
+
+Double-ended queue that supports insertion and deletion from both ends.
+
+```java
 Deque<Integer> deque = new ArrayDeque<>();
-deque.addFirst(1);
-deque.addLast(2);
+
+deque.addFirst(10);
+deque.addLast(20);
+
 deque.pollFirst();
 deque.pollLast();
-When to use:
+```
 
-Sliding window problems (a huge one for your hackathon prep!) — maintain a window's min/max efficiently using a monotonic deque.
-Palindrome checking.
-Whenever you need both stack and queue behavior.
-7. HashMap
-What it does: Stores key-value pairs. Uses hashing internally for near O(1) average lookup, insert, and delete.
+**Use for:** Sliding-window problems, palindrome checking, stacks, and queues.
 
-How to use:
+---
 
-import java.util.HashMap;
+### 7. HashMap
 
+Stores data as **key-value pairs** with average O(1) lookup.
+
+```java
 HashMap<String, Integer> map = new HashMap<>();
-map.put("apple", 3);              // insert/update
-int count = map.get("apple");     // retrieve
-boolean has = map.containsKey("apple");
-map.getOrDefault("banana", 0);    // returns 0 if key missing
-map.remove("apple");
 
-// iterate
-for (Map.Entry<String, Integer> entry : map.entrySet()) {
-    System.out.println(entry.getKey() + " = " + entry.getValue());
-}
+map.put("Apple", 10);
+map.put("Banana", 20);
 
-// common pattern: frequency counting
-map.put(word, map.getOrDefault(word, 0) + 1);
-When to use:
+System.out.println(map.get("Apple"));
+System.out.println(map.containsKey("Banana"));
+```
 
-Frequency counting (word count, character count).
-Fast lookups by a key (caching, memoization).
-Two-sum style problems — store value→index as you scan.
-Anytime you think "have I seen this key before, and what's associated with it?"
-Note: No guaranteed order. Use LinkedHashMap if you need insertion order, or TreeMap if you need sorted key order.
+**Use for:** Frequency counting, caching, fast lookups, Two Sum, and memoization.
 
-8. HashSet
-What it does: Like a HashMap but stores only unique keys — no duplicates, no values.
+---
 
-How to use:
+### 8. HashSet
 
-import java.util.HashSet;
+Stores only unique elements.
 
+```java
 HashSet<Integer> set = new HashSet<>();
-set.add(5);
-set.add(5);          // ignored, already present
-boolean has = set.contains(5);   // O(1) average
-set.remove(5);
-int size = set.size();
-When to use:
 
-Checking for duplicates.
-"Have I visited this node before?" in graph traversal.
-Removing duplicates from a collection.
-Fast membership testing — much faster than scanning an array/list.
-Related: LinkedHashSet (preserves insertion order), TreeSet (keeps elements sorted).
+set.add(10);
+set.add(20);
+set.add(10); // Duplicate ignored
 
-9. TreeMap / TreeSet
-What it does: Sorted versions of Map/Set, backed by a Red-Black Tree. Keeps keys/elements in sorted order automatically. O(log n) operations.
+System.out.println(set.contains(10));
+```
 
-How to use:
+**Use for:** Duplicate detection, visited nodes, uniqueness checks, and membership testing.
 
-import java.util.TreeMap;
+---
 
-TreeMap<Integer, String> tmap = new TreeMap<>();
-tmap.put(3, "c");
-tmap.put(1, "a");
-tmap.firstKey();     // 1
-tmap.lastKey();      // 3
-tmap.ceilingKey(2);  // smallest key >= 2
-tmap.floorKey(2);    // largest key <= 2
-When to use:
+### 9. TreeMap / TreeSet
 
-You need data sorted at all times (e.g., leaderboard, ranges).
-You need "nearest value" queries (ceiling/floor).
-Slower than HashMap/HashSet, so only use when order matters.
-10. PriorityQueue (Heap)
-What it does: A queue where the "highest priority" element (smallest by default) always comes out first, not the one added first.
+Sorted data structures based on a Red-Black Tree.
 
-How to use:
+```java
+TreeMap<Integer, String> map = new TreeMap<>();
 
-import java.util.PriorityQueue;
+map.put(3, "C");
+map.put(1, "A");
+map.put(2, "B");
 
-PriorityQueue<Integer> minHeap = new PriorityQueue<>();  // min-heap by default
-minHeap.offer(5);
-minHeap.offer(1);
-minHeap.offer(3);
-int smallest = minHeap.poll();  // 1
+System.out.println(map.firstKey());
+System.out.println(map.lastKey());
+```
 
-// max-heap
-PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+**Use for:** Sorted data, range queries, and finding nearest values.
 
-// custom comparator
-PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] - b[0]);
-When to use:
+---
 
-Getting the k-th largest/smallest element.
-Dijkstra's algorithm, task scheduling by priority.
-Merging k sorted lists.
-Anytime you repeatedly need the min or max from a changing collection.
-11. Graph (using adjacency list)
-What it does: Represents nodes and connections between them. Java has no built-in Graph class — you build it with a HashMap or array of lists.
+### 10. PriorityQueue (Heap)
 
-How to use:
+Returns elements according to priority rather than insertion order.
 
-import java.util.*;
+```java
+PriorityQueue<Integer> pq = new PriorityQueue<>();
 
+pq.offer(5);
+pq.offer(1);
+pq.offer(3);
+
+System.out.println(pq.poll()); // 1
+```
+
+**Use for:** Top-K problems, Dijkstra's algorithm, scheduling, and repeatedly finding minimum/maximum values.
+
+---
+
+### 11. Graph
+
+Represents vertices (nodes) and edges (connections).
+
+```java
 Map<Integer, List<Integer>> graph = new HashMap<>();
+
 graph.put(1, new ArrayList<>(List.of(2, 3)));
 graph.put(2, new ArrayList<>(List.of(1)));
+```
 
-// add edge
-graph.computeIfAbsent(1, k -> new ArrayList<>()).add(4);
-When to use:
+**Use for:** Networks, maps, dependencies, BFS, DFS, shortest paths, and cycle detection.
 
-Modeling networks, dependencies, maps, social connections.
-BFS/DFS traversal problems.
-Shortest path, cycle detection, topological sort.
-Quick Decision Guide
-Need	Use
-Fixed-size, fast index access	Array
-Growable list, mostly reading	ArrayList
-Frequent insert/delete at ends	LinkedList / ArrayDeque
-LIFO behavior	Deque (as stack)
-FIFO behavior	Queue / LinkedList
-Fast key lookup, no order needed	HashMap
-Fast uniqueness check	HashSet
-Need sorted keys/elements	TreeMap / TreeSet
-Need min/max repeatedly	PriorityQueue
-Model connections/network	Graph via HashMap<Integer, List<Integer>>
-Time Complexity Cheat Sheet
-Structure	Access	Search	Insert	Delete
-Array	O(1)	O(n)	O(n)	O(n)
-ArrayList	O(1)	O(n)	O(1)*	O(n)
-LinkedList	O(n)	O(n)	O(1)	O(1)
-HashMap/HashSet	—	O(1) avg	O(1) avg	O(1) avg
-TreeMap/TreeSet	—	O(log n)	O(log n)	O(log n)
-Stack/Queue (ArrayDeque)	—	O(n)	O(1)	O(1)
-PriorityQueue	—	O(n)	O(log n)	O(log n)
-*amortized, at the end of the list
+---
 
-Tip for your hackathon prep: HashMap + HashSet cover the majority of "have I seen this before / count frequency" problems, while Deque/PriorityQueue cover most sliding-window and top-k problems. If a problem feels slow with brute force, ask "which of these gets me O(1) or O(log n) for the operation I'm repeating?"
+## ⏱️ Time Complexity Cheat Sheet
+
+| Data Structure    | Access |   Search |   Insert |   Delete |
+| ----------------- | -----: | -------: | -------: | -------: |
+| Array             |   O(1) |     O(n) |     O(n) |     O(n) |
+| ArrayList         |   O(1) |     O(n) |    O(1)* |     O(n) |
+| LinkedList        |   O(n) |     O(n) |   O(1)** |   O(1)** |
+| HashMap           |      — | O(1) avg | O(1) avg | O(1) avg |
+| HashSet           |      — | O(1) avg | O(1) avg | O(1) avg |
+| TreeMap / TreeSet |      — | O(log n) | O(log n) | O(log n) |
+| Stack / Queue     |      — |     O(n) |     O(1) |     O(1) |
+| PriorityQueue     |      — |     O(n) | O(log n) | O(log n) |
+
+* Amortized when adding at the end.
+** When the node/position is already known.
+
+---
+
+## 🔍 Quick Decision Guide
+
+| Requirement                         | Recommended Structure       |
+| ----------------------------------- | --------------------------- |
+| Fixed-size data                     | `Array`                     |
+| Dynamic list + fast access          | `ArrayList`                 |
+| Frequent insertion/deletion at ends | `LinkedList` / `ArrayDeque` |
+| LIFO                                | `Deque`                     |
+| FIFO                                | `Queue`                     |
+| Fast key-value lookup               | `HashMap`                   |
+| Unique values                       | `HashSet`                   |
+| Sorted data                         | `TreeMap` / `TreeSet`       |
+| Repeated min/max                    | `PriorityQueue`             |
+| Networks/connections                | `Graph`                     |
+
+## 🎯 Important Algorithms to Practice
+
+* Searching — Linear Search, Binary Search
+* Sorting — Bubble, Selection, Insertion, Merge, Quick Sort
+* Recursion
+* Linked List operations
+* Stack & Queue operations
+* Hashing
+* Tree Traversals — Inorder, Preorder, Postorder
+* BFS & DFS
+* Shortest Path — Dijkstra
+* Topological Sorting
+* Sliding Window
+* Two Pointers
+* Backtracking
+* Dynamic Programming
+
+## 🛠️ Technologies
+
+* **Language:** Java
+* **Concept:** Data Structures & Algorithms
+* **IDE:** IntelliJ IDEA / VS Code / Eclipse
+
+## 📌 Goal
+
+This repository is intended as a **Java DSA learning and revision reference**, with implementations and examples of fundamental data structures and algorithms.
