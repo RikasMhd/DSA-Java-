@@ -41,6 +41,23 @@ public class BinaryTree{
 		}
 		System.out.println();
 	}
+
+	public void inOrderTraversal(int index){
+		if(isEmpty()){
+			System.out.println("Tree is Empty");
+		}
+		else{
+			if(index < 0 || index >= currentSize){
+				System.out.println("Index is not correct");
+				return ;
+			}
+			else{
+				inOrderTraversal(2 * index + 1);
+				System.out.println(treeArray[index] + " ");
+				inOrderTraversal(2 * index + 2);
+			}
+		}
+	}
 	
 	public static void main(String [] args){
 		BinaryTree bt=new BinaryTree(10);
@@ -52,6 +69,8 @@ public class BinaryTree{
 		bt.insert(7);
 		bt.insert(1);
 		
-		bt.show();
+		//bt.show();
+		//bt.inOrderTraversal(0) 			//index is the level of tree
+		bt.inOrderTraversal(1);
 	}
 }
