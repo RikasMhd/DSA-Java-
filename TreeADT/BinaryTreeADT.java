@@ -1,9 +1,9 @@
-public class TreeADT {
+public class BinaryTreeADT {
     int [] tree;
     int maxSize;
     int currSize;
 
-    TreeADT(int maxSize){
+    BinaryTreeADT(int maxSize){
         this.maxSize = maxSize;
         tree = new int [maxSize];
         this.currSize = 0;
@@ -92,7 +92,7 @@ public class TreeADT {
     }
 
     public static void main(String[] args) {
-        TreeADT t = new TreeADT(10);
+        BinaryTreeADT t = new BinaryTreeADT(10);
         t.insert(7);
         t.insert(8);
         t.insert(2);
